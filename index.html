@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Plugin Dependencies -->
+    <script src=".\bower_components\jquery\dist\jquery.js"></script>
+    <script src=".\bower_components\jquery-ui\jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    <!-- Plugin Import -->
+    <script src=".\basic-form-generator.js"></script>
+</head>
+<body>
+    <div class="form-group" id="container"></div>
+    <button class="btn btn-default" onclick="saveForm()">Save in browser</button>
+    <div class="card card-body" id="results"></div>
+    <script type="text/javascript">
+        $("#container").formgenerator({
+            structure: {
+                name: "text",
+                companyId: "number",
+                properties: {
+                    boardId: "number",
+                    description: "text",
+                    creationDate: "date"
+                }
+            },
+            structureOptions: {
+                companyId: {
+                    disable: true,
+                    placeholder: "Not visible"
+                }
+            },
+            data: getForm()
+        }).on("change", function() {
+            $("#results").html(JSON.stringify( $("#container").formgenerator("getData") ));
+        }).trigger("change");
+
+        function saveForm() {
+            sessionStorage.formData = JSON.stringify($("#container").formgenerator("getData"));
+        }
+
+        function getForm() {
+            if(sessionStorage.formData) {
+                return JSON.parse(sessionStorage.formData);
+            }
+            return {};
+        }
+    </script>
+</body>
+</html>
