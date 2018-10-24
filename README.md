@@ -23,7 +23,10 @@ $("#container").formgenerator({
             placeholder: "Not visible"
         }
     },
-    data: getForm()
+    data: {}
 })
 ```
-
+To get data filled:
+```javascript
+$("#container").formgenerator("getData")
+```
