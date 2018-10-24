@@ -6,7 +6,7 @@ It's a very basic implementation of a plugin that ables you to build forms progr
 Clone this repository and open the ```index.html``` to checkout how it properly works.
 
 An example of a very basic usage.
-```
+```javascript
 $("#container").formgenerator({
     structure: {
         name: "text",
@@ -25,5 +25,5 @@ $("#container").formgenerator({
     },
     data: getForm()
 })
-```javascript
+```
 
