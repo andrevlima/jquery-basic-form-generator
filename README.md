@@ -30,3 +30,4 @@ To get data filled:
 ```javascript
 $("#container").formgenerator("getData")
 ```
+This can be usefull as an academic resource or just for study purposes
